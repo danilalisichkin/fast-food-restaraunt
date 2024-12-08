@@ -44,5 +44,4 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> items;
-
 }
