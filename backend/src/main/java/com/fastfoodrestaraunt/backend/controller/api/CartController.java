@@ -3,8 +3,12 @@ package com.fastfoodrestaraunt.backend.controller.api;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartDto;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemDto;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Validated
 @RestController
 @RequestMapping("/api/v1/carts")
 public class CartController {
@@ -26,7 +31,7 @@ public class CartController {
     @PostMapping("/{id}/items")
     public ResponseEntity<CartItemDto> addCartItem(
             @PathVariable String id,
-            @RequestBody CartItemAddingDto addingDto) {
+            @RequestBody @Valid CartItemAddingDto addingDto) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -35,7 +40,7 @@ public class CartController {
     public ResponseEntity<CartItemDto> updateCartItem(
             @PathVariable String id,
             @PathVariable Long itemId,
-            @RequestBody Long quantity) {
+            @RequestBody @NotNull @Positive Long quantity) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
