@@ -36,19 +36,19 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PutMapping("/{id}/items/{itemId}")
+    @PutMapping("/{id}/items/{productId}")
     public ResponseEntity<CartItemDto> updateCartItem(
             @PathVariable String id,
-            @PathVariable Long itemId,
+            @PathVariable Long productId,
             @RequestBody @NotNull @Positive Long quantity) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/{id}/items/{itemId}")
+    @DeleteMapping("/{id}/items/{productId}")
     public ResponseEntity<Void> removeCartItem(
             @PathVariable String id,
-            @PathVariable Long itemId) {
+            @PathVariable Long productId) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }

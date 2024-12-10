@@ -1,10 +1,11 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.core.dto.order.OrderAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.order.OrderDto;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.enums.Status;
 import com.fastfoodrestaraunt.backend.core.enums.sort.OrderSortField;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -43,13 +44,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestBody @NotEmpty String cartId) {
+    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid OrderAddingDto addingDto) {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping
-    public ResponseEntity<OrderDto> updateOrderStatus(@RequestBody @NotNull Status status) {
+    @PutMapping("/{id}")
+    public ResponseEntity<OrderDto> updateOrderStatus(@PathVariable Long id, @RequestBody @NotNull Status status) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
