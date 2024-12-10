@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,14 +27,14 @@ import java.util.List;
 @Table(name = "carts")
 public class Cart {
     @Id
-    private String userPhone;
+    private String id;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_phone")
     private User user;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items;
 
     @Column(nullable = false)
