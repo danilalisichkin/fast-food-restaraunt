@@ -21,6 +21,7 @@ import com.fastfoodrestaraunt.backend.util.PageRequestBuilder;
 import com.fastfoodrestaraunt.backend.validator.CartValidator;
 import com.fastfoodrestaraunt.backend.validator.OrderValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -54,9 +55,15 @@ public class OrderServiceImpl implements OrderService {
         PageRequest pageRequest =
                 PageRequestBuilder.buildPageRequest(offset, limit, sortBy.getValue(), sortOrder);
 
+        Page<Order> orders;
+        if (status != null) {
+            orders = orderRepository.findAllByStatus(pageRequest, status);
+        } else {
+            orders = orderRepository.findAll(pageRequest);
+        }
+
         return pageMapper.pageToPageDto(
-                orderMapper.entityPageToDtoPage(
-                        orderRepository.findAllByStatus(pageRequest, status)));
+                orderMapper.entityPageToDtoPage(orders));
     }
 
     @Override

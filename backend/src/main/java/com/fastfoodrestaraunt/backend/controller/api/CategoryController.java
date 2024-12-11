@@ -3,10 +3,12 @@ package com.fastfoodrestaraunt.backend.controller.api;
 import com.fastfoodrestaraunt.backend.core.dto.category.CategoryDto;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.enums.sort.CategorySortField;
+import com.fastfoodrestaraunt.backend.service.CategoryService;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
 public class CategoryController {
+    private final CategoryService categoryService;
+
     @GetMapping
     public ResponseEntity<PageDto<CategoryDto>> getAllCategories(
             @RequestParam(defaultValue = "0") @PositiveOrZero Integer offset,
@@ -32,20 +37,23 @@ public class CategoryController {
             @RequestParam(defaultValue = "id") CategorySortField sortBy,
             @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder) {
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        PageDto<CategoryDto> page = categoryService.getPageOfCategories(offset, limit, sortBy, sortOrder);
+
+        return ResponseEntity.status(HttpStatus.OK).body(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id) {
+        CategoryDto category = categoryService.getCategory(id);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK).body(category);
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(
-            @RequestBody @NotEmpty @Size(min = 2, max = 40) String name) {
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody @NotEmpty @Size(min = 2, max = 40) String name) {
+        CategoryDto category = categoryService.createCategory(name);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(category);
     }
 
     @PutMapping("/{id}")
@@ -53,11 +61,14 @@ public class CategoryController {
             @PathVariable Long id,
             @RequestBody @NotEmpty @Size(min = 2, max = 40) String name) {
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        CategoryDto category = categoryService.updateCategory(id, name);
+
+        return ResponseEntity.status(HttpStatus.OK).body(category);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategoryById(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
