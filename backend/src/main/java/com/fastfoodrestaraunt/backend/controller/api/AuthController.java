@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.controller.doc.AuthControllerDoc;
 import com.fastfoodrestaraunt.backend.core.dto.auth.AccessTokenDto;
 import com.fastfoodrestaraunt.backend.core.dto.auth.UserLoginDto;
 import com.fastfoodrestaraunt.backend.core.dto.auth.UserRegisterDto;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequestMapping("/api/v1/auth")
-public class AuthController {
+public class AuthController implements AuthControllerDoc {
     @PostMapping("/sign-in")
     public ResponseEntity<AccessTokenDto> signIn(@RequestBody @Valid UserLoginDto loginDto) {
 

@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.controller.doc.UserControllerDoc;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserUpdatingDto;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
-public class UserController {
+public class UserController implements UserControllerDoc {
     private final UserService userService;
 
     @GetMapping

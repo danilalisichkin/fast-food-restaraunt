@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.controller.doc.OrderControllerDoc;
 import com.fastfoodrestaraunt.backend.core.dto.order.OrderAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.order.OrderDto;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/orders")
-public class OrderController {
+public class OrderController implements OrderControllerDoc {
     private final OrderService orderService;
 
     @GetMapping

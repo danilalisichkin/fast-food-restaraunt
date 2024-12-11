@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.controller.doc.CategoryControllerDoc;
 import com.fastfoodrestaraunt.backend.core.dto.category.CategoryDto;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.enums.sort.CategorySortField;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
-public class CategoryController {
+public class CategoryController implements CategoryControllerDoc {
     private final CategoryService categoryService;
 
     @GetMapping

@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.controller.api;
 
+import com.fastfoodrestaraunt.backend.controller.doc.CartControllerDoc;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartDto;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemDto;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/carts")
-public class CartController {
+public class CartController implements CartControllerDoc {
     private final CartService cartService;
 
     @GetMapping("/{id}")
