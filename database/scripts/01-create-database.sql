@@ -1,0 +1,1 @@
+CREATE DATABASE fast_food_restaurant_database;
