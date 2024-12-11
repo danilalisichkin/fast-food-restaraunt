@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductDto createProduct(ProductAddingDto addingDto) {
         productValidator.validateProductNameUnique(addingDto.name());
 
@@ -65,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductDto updateProduct(Long id, ProductUpdatingDto updatingDto) {
         Product productToUpdate = getProductEntity(id);
 
@@ -83,6 +86,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProduct(Long id) {
         Product productToDelete = getProductEntity(id);
         productRepository.delete(productToDelete);

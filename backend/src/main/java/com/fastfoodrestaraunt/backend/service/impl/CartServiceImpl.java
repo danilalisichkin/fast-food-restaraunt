@@ -18,6 +18,7 @@ import com.fastfoodrestaraunt.backend.service.UserService;
 import com.fastfoodrestaraunt.backend.validator.CartValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -47,6 +48,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public CartItemDto addItemToCart(String id, CartItemAddingDto itemAddingDto) {
         CartItem itemToAdd = cartItemMapper.dtoToEntity(itemAddingDto);
         Product product = productService.getProductEntity(itemAddingDto.productId());
@@ -88,6 +90,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public CartItemDto updateItemInCart(String id, Long productId, Integer quantity) {
         Cart cart = getCartEntity(id);
         Product product = productService.getProductEntity(productId);
@@ -101,6 +104,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void deleteItemFromCart(String id, Long productId) {
         Cart cart = getCartEntity(id);
         Product product = productService.getProductEntity(productId);
@@ -111,6 +115,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void deleteCart(String id) {
         cartValidator.validateCartExistence(id);
         cartRepository.deleteById(id);

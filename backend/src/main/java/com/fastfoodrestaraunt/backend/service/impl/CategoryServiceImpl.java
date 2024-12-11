@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryDto createCategory(String name) {
         categoryValidator.validateCategoryNameUnique(name);
 
@@ -57,6 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryDto updateCategory(Long id, String name) {
         Category categoryToUpdate = getCategoryEntity(id);
 
@@ -70,6 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(Long id) {
         Category categoryToDelete = getCategoryEntity(id);
         categoryRepository.delete(categoryToDelete);
