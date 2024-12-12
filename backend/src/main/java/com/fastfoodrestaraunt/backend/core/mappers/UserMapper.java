@@ -4,7 +4,9 @@ import com.fastfoodrestaraunt.backend.core.dto.auth.UserRegisterDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserUpdatingDto;
 import com.fastfoodrestaraunt.backend.entity.User;
+import com.fastfoodrestaraunt.backend.entity.UserCredential;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,9 @@ public interface UserMapper {
     UserDto entityToDto(User entity);
 
     User dtoToEntity(UserRegisterDto dto);
+
+    @Mapping(target = "password", ignore = true)
+    UserCredential dtoToCredential(UserRegisterDto dto);
 
     void updateEntityFromDto(UserUpdatingDto dto, @MappingTarget User entity);
 

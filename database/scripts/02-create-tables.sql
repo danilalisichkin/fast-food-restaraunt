@@ -9,6 +9,14 @@ CREATE TABLE users
     active     BOOLEAN     NOT NULL
 );
 
+CREATE TABLE user_credentials
+(
+    phone    VARCHAR(15) PRIMARY KEY,
+    email    VARCHAR(50)  NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    active   BOOLEAN      NOT NULL
+);
+
 CREATE TABLE categories
 (
     id   SERIAL PRIMARY KEY,
@@ -18,7 +26,7 @@ CREATE TABLE categories
 CREATE TABLE products
 (
     id          SERIAL PRIMARY KEY,
-    name        VARCHAR(20)  NOT NULL UNIQUE,
+    name        VARCHAR(20)   NOT NULL UNIQUE,
     price       DECIMAL(6, 2) NOT NULL,
     weight      INTEGER       NOT NULL,
     image_url   VARCHAR(255),

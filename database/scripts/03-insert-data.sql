@@ -6,7 +6,15 @@ VALUES
     ('375293311331', 'Alexey', 'Alexeev', 'lesha@gmail.com', true),
     ('375447777777', 'Big', 'Smoke', 'grovestreetforever@hotmail.us', true),
     ('375336677889', 'Danila', 'Danilov', 'krutoyperec@gmail.com', true),
-    ('375152233445', 'Trol', 'Trolev', 'anonim@oninim.ru', false);
+    ('375152233445', 'Trol', 'Trolev', 'anonim@anonim.ru', false);
+
+INSERT INTO user_credentials (phone, email, password, active)
+VALUES
+    ('375441234567', 'anton@mail.ru', '$2a$10$Hb/cqHNmN60ed02PrCv1yuRQiVTVxiVj5qVdGxgTQVJ/sDdWLr6w6', true),
+    ('375293311331', 'lesha@gmail.com', '$2a$10$2jfftyn3FNUILpDST1Wp6.R4eq9wKS5LKWzUG12qYdZMP7vObzv8m', true),
+    ('375447777777', 'grovestreetforever@hotmail.us', '$2a$10$zjyZt0c1HLQQhFtxIuEu7u0uUubGy2xCKw6gUcJzJ3GDmKb7MDjJy', true),
+    ('375336677889', 'krutoyperec@gmail.com', '$2a$10$co6ooEu1IDoV6Pato7zJKuEZKLIQ8Y0NwJQakqtrAxkcCPvr1pz5O', true),
+    ('375152233445', 'anonim@anonim.ru', '$2a$10$b54F7mkpXW.YBYi6wbBaveNnU3YRmfnfnTvBR4smQcO2IwBgpKbQO', false);
 
 INSERT INTO categories (id, name)
 VALUES

@@ -14,15 +14,19 @@ public record UserRegisterDto(
         String phone,
 
         @NotEmpty
+        @Email
+        String email,
+
+        @NotEmpty
+        @Size(min = 4, max = 40)
+        String password,
+
+        @NotEmpty
         @Size(min = 2, max = 50)
         String firstName,
 
         @NotEmpty
         @Size(min = 2, max = 50)
-        String lastName,
-
-        @NotEmpty
-        @Email
-        String email
+        String lastName
 ) {
 }
