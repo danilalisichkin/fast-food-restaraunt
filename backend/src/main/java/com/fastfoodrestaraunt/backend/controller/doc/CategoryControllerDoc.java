@@ -5,6 +5,7 @@ import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.enums.sort.CategorySortField;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@SecurityRequirement(name = "token")
 @Tag(name = "Category API Controller", description = "Provides CRUD-operations with product categories")
 public interface CategoryControllerDoc {
 

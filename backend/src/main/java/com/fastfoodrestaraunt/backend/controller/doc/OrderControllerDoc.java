@@ -7,6 +7,7 @@ import com.fastfoodrestaraunt.backend.core.enums.Status;
 import com.fastfoodrestaraunt.backend.core.enums.sort.OrderSortField;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@SecurityRequirement(name = "token")
 @Tag(name = "Order API Controller", description = "Provides CRUD-operations with orders")
 public interface OrderControllerDoc {
 

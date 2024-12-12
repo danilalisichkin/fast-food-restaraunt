@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum UserSortField {
     PHONE("phone"),
-    NAME("name"),
+    FIRST_NAME("firstName"),
     LAST_NAME("lastName"),
     EMAIL("email");
 

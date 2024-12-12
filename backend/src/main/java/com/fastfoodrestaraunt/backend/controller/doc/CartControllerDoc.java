@@ -5,6 +5,7 @@ import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.cart.CartItemDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+@SecurityRequirement(name = "token")
 @Tag(name = "Cart API Controller", description = "Provides CRUD-operations with shopping carts and items in them")
 public interface CartControllerDoc {
 

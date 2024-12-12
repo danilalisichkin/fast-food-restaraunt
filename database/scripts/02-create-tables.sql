@@ -14,6 +14,7 @@ CREATE TABLE user_credentials
     phone    VARCHAR(15) PRIMARY KEY,
     email    VARCHAR(50)  NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
+    role     VARCHAR(10)  NOT NULL,
     active   BOOLEAN      NOT NULL
 );
 

@@ -3,6 +3,7 @@ package com.fastfoodrestaraunt.backend.service.impl;
 import com.fastfoodrestaraunt.backend.core.dto.auth.AccessTokenDto;
 import com.fastfoodrestaraunt.backend.core.dto.auth.UserLoginDto;
 import com.fastfoodrestaraunt.backend.core.dto.auth.UserRegisterDto;
+import com.fastfoodrestaraunt.backend.core.enums.Role;
 import com.fastfoodrestaraunt.backend.core.mappers.UserMapper;
 import com.fastfoodrestaraunt.backend.entity.User;
 import com.fastfoodrestaraunt.backend.entity.UserCredential;
@@ -44,8 +45,6 @@ public class AuthServiceImpl implements AuthService {
 
         createUser(registerDto);
         createUserCredential(registerDto);
-
-        /// TODO: implement auth, security
     }
 
     @Override
@@ -106,6 +105,7 @@ public class AuthServiceImpl implements AuthService {
     private void createUserCredential(UserRegisterDto registerDto) {
         UserCredential newUserCredential = userMapper.dtoToCredential(registerDto);
 
+        newUserCredential.setRole(Role.CUSTOMER);
         newUserCredential.setActive(true);
         newUserCredential.setPassword(passwordEncoder.encode(registerDto.password()));
 
