@@ -1,0 +1,82 @@
+.rightSideBarContainer {
+  margin-left: 20px;
+  width: 500px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.rightSideBar {
+  height: fit-content;
+  width: 80%;
+  top: 100px;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.rightSideBar__caption {
+  cursor: default;
+  font-size: 30px;
+  height: fit-content;
+  margin: 0;
+  color: #000000;
+}
+
+.rightSideBar__totalQuantity {
+  cursor: default;
+  font-size: 22px;
+  color: gray;
+  margin: 0;
+}
+
+.total__caption {
+  cursor: default;
+  margin: 0;
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.total__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.total__price {
+  cursor: default;
+  font-size: 30px;
+  font-weight: bold;
+  color: #ff9921;
+  margin: 0;
+}
+
+.total__weight {
+  cursor: default;
+  color: gray;
+  font-size: 20px;
+  margin: 0;
+}
+
+.rightSideBar__placeOrderButton {
+  background-color: #ff9921;
+  border: 2px solid #ff9921;
+  border-radius: 10px;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.rightSideBar__placeOrderButton:hover {
+  scale: 105%;
+}

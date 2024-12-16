@@ -1,0 +1,64 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+  height: fit-content;
+  font-size: 20px;
+  p {
+    margin: 0;
+  }
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 30%;
+    height: fit-content;
+}
+
+.contactContainer__icon {
+    margin-right: 5px;
+}
+
+.user__firstName {
+    width: 20%;
+}
+
+.user__lastName {
+    width: 20%;
+}
+
+.activateButton {
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    align-items: center;
+}
+
+.activateButton:hover {
+    scale: 105%;
+}
+
+.active {
+    background-color: green;
+}
+
+.blocked {
+    background-color: red;
+}

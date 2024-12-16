@@ -1,0 +1,34 @@
+.naviBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 15px;
+  height: 30px;
+}
+
+.naviBar__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.active {
+  border-color: #ff9921;
+  background-color: #ff9921;
+  cursor: default;
+}
+
+.naviBar__button:hover {
+  border-color: #ff9921;
+}

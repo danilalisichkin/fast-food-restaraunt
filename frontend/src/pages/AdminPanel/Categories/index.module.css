@@ -1,0 +1,48 @@
+.categoriesSection {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  width: 1000px;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__caption {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.error__message {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 20px;
+}
+
+.createContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border: 2px dashed gray;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.createContainer:hover {
+  cursor: pointer;
+  scale: 102%;
+}

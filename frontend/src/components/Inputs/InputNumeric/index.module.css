@@ -1,0 +1,18 @@
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer input {
+  border: 2px solid gray;
+  border-radius: 5px;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  height: 20px;
+}
+
+.inputContainer input:hover {
+  border-color: #ffffff;
+}

@@ -1,0 +1,24 @@
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer label {
+  margin: 0;
+  font-size: 20px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.inputContainer select {
+  outline: none;
+  border: 2px solid #ebe8e3;
+  border-radius: 5px;
+  font-size: 20px;
+  width: max-content;
+  background: none;
+  cursor: pointer;
+}
+
+.inputContainer select:hover {
+  border-color: #FF9921;
+}

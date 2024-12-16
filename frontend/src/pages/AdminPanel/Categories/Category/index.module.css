@@ -1,0 +1,43 @@
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.category__id {
+  margin: 0;
+  margin-left: 5px;
+  width: 30%;
+}
+
+.category__name {
+  margin: 0;
+  width: 50%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.buttonContainer__icon {
+  width: fit-content;
+  height: 80%;
+  cursor: pointer;
+}

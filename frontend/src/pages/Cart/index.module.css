@@ -1,0 +1,32 @@
+.main__mainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100vw;
+  min-width: 100vw;
+  min-height: 595px;
+}
+
+.message {
+  align-self: center;
+  justify-self: center;
+  padding-inline: 20px;
+  p {
+    font-size: 30px;
+    text-wrap: balance;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: fit-content;
+  width: 70%;
+  height: 100%;
+  margin: 20px;
+  margin-left: 500px;
+  padding: 0;
+}

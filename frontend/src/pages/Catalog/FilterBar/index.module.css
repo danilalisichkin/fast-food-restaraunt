@@ -1,0 +1,38 @@
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 40px;
+}
+
+.filterBar__filterContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  p {
+    margin: 0;
+    font-size: 20px;
+    margin-right: 10px;
+    text-align: left;
+  }
+}
+
+.filterOrder__icon {
+  height: 80%;
+  cursor: pointer;
+}
+
+.filterOrder__icon:hover {
+  opacity: 0.8;
+}
