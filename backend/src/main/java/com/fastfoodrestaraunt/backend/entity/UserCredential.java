@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,9 +26,6 @@ public class UserCredential {
     @Id
     private String phone;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @Column(nullable = false)
     private String password;
 
@@ -36,4 +35,8 @@ public class UserCredential {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @OneToOne
+    @JoinColumn(name = "phone", referencedColumnName = "phone", insertable = false, updatable = false)
+    private User user;
 }
