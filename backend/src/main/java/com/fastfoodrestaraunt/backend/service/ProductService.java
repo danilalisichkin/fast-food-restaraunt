@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort;
 public interface ProductService {
 
     PageDto<ProductDto> getPageOfProducts(
-            Integer offset, Integer limit, ProductSortField sortBy, Sort.Direction sortOrder);
+            Integer offset, Integer limit, ProductSortField sortBy, Sort.Direction sortOrder, Long categoryId);
 
     ProductDto getProduct(Long id);
 

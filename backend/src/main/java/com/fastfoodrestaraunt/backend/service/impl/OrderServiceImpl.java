@@ -3,6 +3,7 @@ package com.fastfoodrestaraunt.backend.service.impl;
 import com.fastfoodrestaraunt.backend.core.dto.order.OrderAddingDto;
 import com.fastfoodrestaraunt.backend.core.dto.order.OrderDto;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
+import com.fastfoodrestaraunt.backend.core.enums.Role;
 import com.fastfoodrestaraunt.backend.core.enums.Status;
 import com.fastfoodrestaraunt.backend.core.enums.sort.OrderSortField;
 import com.fastfoodrestaraunt.backend.core.mappers.OrderItemMapper;
@@ -14,9 +15,13 @@ import com.fastfoodrestaraunt.backend.entity.Order;
 import com.fastfoodrestaraunt.backend.entity.OrderItem;
 import com.fastfoodrestaraunt.backend.entity.User;
 import com.fastfoodrestaraunt.backend.exception.ResourceNotFoundException;
+import com.fastfoodrestaraunt.backend.repository.OrderItemRepository;
 import com.fastfoodrestaraunt.backend.repository.OrderRepository;
+import com.fastfoodrestaraunt.backend.security.utils.ContextUtils;
 import com.fastfoodrestaraunt.backend.service.CartService;
+import com.fastfoodrestaraunt.backend.service.MailService;
 import com.fastfoodrestaraunt.backend.service.OrderService;
+import com.fastfoodrestaraunt.backend.service.UserService;
 import com.fastfoodrestaraunt.backend.util.PageRequestBuilder;
 import com.fastfoodrestaraunt.backend.validator.CartValidator;
 import com.fastfoodrestaraunt.backend.validator.OrderValidator;
@@ -40,7 +45,13 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 
+    private final OrderItemRepository orderItemRepository;
+
+    private final UserService userService;
+
     private final CartService cartService;
+
+    private final MailService mailService;
 
     private final OrderMapper orderMapper;
 
@@ -55,11 +66,21 @@ public class OrderServiceImpl implements OrderService {
         PageRequest pageRequest =
                 PageRequestBuilder.buildPageRequest(offset, limit, sortBy.getValue(), sortOrder);
 
+        String userIdentifier = ContextUtils.getUserId();
+        List<String> userRoles = ContextUtils.getRoles();
+        boolean isAdmin = userRoles.contains("ROLE_" + Role.ADMIN.name());
+
         Page<Order> orders;
-        if (status != null) {
-            orders = orderRepository.findAllByStatus(pageRequest, status);
+
+        if (!isAdmin) {
+            User user = userService.getUserEntityByIdentifier(userIdentifier);
+            orders = status == null
+                    ? orderRepository.findAllByUser(pageRequest, user)
+                    : orderRepository.findAllByUserAndStatus(pageRequest, user, status);
         } else {
-            orders = orderRepository.findAll(pageRequest);
+            orders = status == null
+                    ? orderRepository.findAll(pageRequest)
+                    : orderRepository.findAllByStatus(pageRequest, status);
         }
 
         return pageMapper.pageToPageDto(
@@ -91,8 +112,16 @@ public class OrderServiceImpl implements OrderService {
 
         newOrder.setStatus(Status.NEW);
 
-        return orderMapper.entityToDto(
-                orderRepository.save(newOrder));
+        Order savedOrder = orderRepository.save(newOrder);
+        orderItemRepository.saveAll(orderItems);
+        cartService.deleteCart(cart.getId());
+
+        mailService.sendOrderStatusChangedMessage(
+                user.getEmail(),
+                savedOrder.getId().toString(),
+                Status.NEW.name());
+
+        return orderMapper.entityToDto(savedOrder);
     }
 
     @Override
@@ -105,6 +134,17 @@ public class OrderServiceImpl implements OrderService {
         orderToUpdate.setStatus(status);
         if (status == Status.DELIVERED) {
             orderToUpdate.setCompletedAt(LocalDateTime.now());
+        }
+
+        if (status.equals(Status.DELIVERED)) {
+            mailService.sendOrderCompleteMessage(
+                    orderToUpdate.getUser().getEmail(),
+                    orderToUpdate.getId().toString());
+        } else {
+            mailService.sendOrderStatusChangedMessage(
+                    orderToUpdate.getUser().getEmail(),
+                    orderToUpdate.getId().toString(),
+                    status.name());
         }
 
         return orderMapper.entityToDto(

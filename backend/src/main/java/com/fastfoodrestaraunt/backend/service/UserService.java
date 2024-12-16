@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 public interface UserService {
 
     PageDto<UserDto> getPageOfUsers(
-            Integer offset, Integer limit, UserSortField sortBy, Sort.Direction sortOrder);
+            Integer offset, Integer limit, UserSortField sortBy, Sort.Direction sortOrder, Boolean active);
 
     UserDto getUser(String id);
 
@@ -21,4 +21,6 @@ public interface UserService {
     void deactivateUser(String id);
 
     User getUserEntity(String id);
+
+    User getUserEntityByIdentifier(String identifier);
 }

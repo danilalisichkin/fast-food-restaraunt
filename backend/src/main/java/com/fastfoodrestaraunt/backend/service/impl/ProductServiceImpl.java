@@ -16,6 +16,7 @@ import com.fastfoodrestaraunt.backend.service.ProductService;
 import com.fastfoodrestaraunt.backend.util.PageRequestBuilder;
 import com.fastfoodrestaraunt.backend.validator.ProductValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -37,14 +38,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public PageDto<ProductDto> getPageOfProducts(
-            Integer offset, Integer limit, ProductSortField sortBy, Sort.Direction sortOrder) {
+            Integer offset, Integer limit, ProductSortField sortBy, Sort.Direction sortOrder, Long categoryId) {
 
         PageRequest pageRequest =
                 PageRequestBuilder.buildPageRequest(offset, limit, sortBy.getValue(), sortOrder);
 
+        Page<Product> products;
+        if (categoryId != null) {
+            Category category = categoryService.getCategoryEntity(categoryId);
+            products = productRepository.findAllByCategory(pageRequest, category);
+        } else {
+            products = productRepository.findAll(pageRequest);
+        }
+
         return pageMapper.pageToPageDto(
-                productMapper.entityPageToDtoPage(
-                        productRepository.findAll(pageRequest)));
+                productMapper.entityPageToDtoPage(products));
     }
 
     @Override
@@ -74,7 +82,7 @@ public class ProductServiceImpl implements ProductService {
         if (!productToUpdate.getName().equals(updatingDto.name())) {
             productValidator.validateProductNameUnique(updatingDto.name());
         }
-        if (!productToUpdate.getCategory().getId().equals(updatingDto.categoryId())) {
+        if (productToUpdate.getCategory() != null && !productToUpdate.getCategory().getId().equals(updatingDto.categoryId())) {
             Category category = categoryService.getCategoryEntity(updatingDto.categoryId());
             productToUpdate.setCategory(category);
         }

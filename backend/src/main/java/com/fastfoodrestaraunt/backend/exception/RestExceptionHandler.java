@@ -56,7 +56,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
-    public ResponseEntity<MultiErrorResponse> handleValidationException(RuntimeException e) {
+    public ResponseEntity<MultiErrorResponse> handleValidationException(Exception e) {
         Map<String, List<String>> errorMap = new HashMap<>();
 
         getValidationErrors(errorMap, e);

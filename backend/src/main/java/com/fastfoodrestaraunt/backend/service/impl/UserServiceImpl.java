@@ -3,24 +3,31 @@ package com.fastfoodrestaraunt.backend.service.impl;
 import com.fastfoodrestaraunt.backend.core.dto.pagination.PageDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserDto;
 import com.fastfoodrestaraunt.backend.core.dto.user.UserUpdatingDto;
+import com.fastfoodrestaraunt.backend.core.enums.Role;
 import com.fastfoodrestaraunt.backend.core.enums.sort.UserSortField;
 import com.fastfoodrestaraunt.backend.core.mappers.PageMapper;
 import com.fastfoodrestaraunt.backend.core.mappers.UserMapper;
 import com.fastfoodrestaraunt.backend.entity.User;
+import com.fastfoodrestaraunt.backend.entity.UserCredential;
 import com.fastfoodrestaraunt.backend.exception.ResourceNotFoundException;
 import com.fastfoodrestaraunt.backend.repository.UserRepository;
+import com.fastfoodrestaraunt.backend.service.UserCredentialService;
 import com.fastfoodrestaraunt.backend.service.UserService;
 import com.fastfoodrestaraunt.backend.util.PageRequestBuilder;
 import com.fastfoodrestaraunt.backend.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
+    private final UserCredentialService userCredentialService;
 
     private final UserValidator userValidator;
 
@@ -32,14 +39,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageDto<UserDto> getPageOfUsers(
-            Integer offset, Integer limit, UserSortField sortBy, Sort.Direction sortOrder) {
+            Integer offset, Integer limit, UserSortField sortBy, Sort.Direction sortOrder, Boolean active) {
 
         PageRequest pageRequest =
                 PageRequestBuilder.buildPageRequest(offset, limit, sortBy.getValue(), sortOrder);
 
+        Page<UserCredential> users = userCredentialService.getAllByRoleAndActive(pageRequest, Role.CUSTOMER, active);
+
         return pageMapper.pageToPageDto(
-                userMapper.entityPageToDtoPage(
-                        userRepository.findAll(pageRequest)));
+                userMapper.credentialPageToDtoPage(users));
     }
 
     @Override
@@ -58,6 +66,7 @@ public class UserServiceImpl implements UserService {
         }
 
         userMapper.updateEntityFromDto(updatingDto, userToUpdate);
+        userCredentialService.setUserActive(userToUpdate.getUserCredential(), updatingDto.active());
 
         return userMapper.entityToDto(
                 userRepository.save(userToUpdate));
@@ -66,28 +75,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public void activateUser(String id) {
         User userToActivate = getUserEntity(id);
+        UserCredential userCredential = userToActivate.getUserCredential();
 
-        if (Boolean.FALSE.equals(userToActivate.getActive())) {
-            userToActivate.setActive(true);
+        if (Boolean.FALSE.equals(userCredential.getActive())) {
+            userCredentialService.setUserActive(userCredential, true);
             userRepository.save(userToActivate);
         }
     }
 
     @Override
     public void deactivateUser(String id) {
-        User userToDeactivate = getUserEntity(id);
+        User userToActivate = getUserEntity(id);
+        UserCredential userCredential = userToActivate.getUserCredential();
 
-        if (Boolean.TRUE.equals(userToDeactivate.getActive())) {
-            userToDeactivate.setActive(false);
-            userRepository.save(userToDeactivate);
+        if (Boolean.TRUE.equals(userCredential.getActive())) {
+            userCredentialService.setUserActive(userCredential, false);
+            userRepository.save(userToActivate);
         }
     }
 
-    @Override
     public User getUserEntity(String id) {
         return userRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         String.format("user with phone=%s not found", id)));
+    }
+
+    public User getUserEntityByIdentifier(String identifier) {
+        return userRepository.findById(identifier)
+                .or(() -> userRepository.findByEmail(identifier))
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("user with identifier %s not found", identifier)));
     }
 }

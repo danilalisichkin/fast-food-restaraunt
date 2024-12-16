@@ -17,13 +17,16 @@ import com.fastfoodrestaraunt.backend.service.ProductService;
 import com.fastfoodrestaraunt.backend.service.UserService;
 import com.fastfoodrestaraunt.backend.validator.CartValidator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
@@ -50,6 +53,8 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public CartItemDto addItemToCart(String id, CartItemAddingDto itemAddingDto) {
+        cartValidator.validateUserIsCartOwner(id);
+
         CartItem itemToAdd = cartItemMapper.dtoToEntity(itemAddingDto);
         Product product = productService.getProductEntity(itemAddingDto.productId());
         itemToAdd.setProduct(product);
@@ -66,6 +71,7 @@ public class CartServiceImpl implements CartService {
     }
 
     private void createNewCartWithItem(String id, CartItem cartItem) {
+        cartValidator.validateUserIsCartOwner(id);
         cartValidator.validateCartUniqueness(id);
 
         User user = userService.getUserEntity(id);
@@ -78,6 +84,8 @@ public class CartServiceImpl implements CartService {
         cartItem.setCart(cart);
         cart.getItems().add(cartItem);
 
+        setCartUpdatedTime(cart);
+
         cartRepository.save(cart);
     }
 
@@ -86,18 +94,24 @@ public class CartServiceImpl implements CartService {
         cartItem.setCart(cart);
         cart.getItems().add(cartItem);
 
+        setCartUpdatedTime(cart);
+
         cartRepository.save(cart);
     }
 
     @Override
     @Transactional
     public CartItemDto updateItemInCart(String id, Long productId, Integer quantity) {
+        cartValidator.validateUserIsCartOwner(id);
+
         Cart cart = getCartEntity(id);
         Product product = productService.getProductEntity(productId);
 
         CartItem itemToUpdate = getCartItemEntity(cart, product);
 
         itemToUpdate.setQuantity(quantity);
+
+        setCartUpdatedTime(cart);
 
         return cartItemMapper.entityToDto(
                 cartItemRepository.save(itemToUpdate));
@@ -106,10 +120,14 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void deleteItemFromCart(String id, Long productId) {
+        cartValidator.validateUserIsCartOwner(id);
+
         Cart cart = getCartEntity(id);
         Product product = productService.getProductEntity(productId);
 
         cartValidator.validateProductInCart(cart, product);
+
+        setCartUpdatedTime(cart);
 
         cartItemRepository.deleteByCartAndProduct(cart, product);
     }
@@ -117,6 +135,8 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void deleteCart(String id) {
+        cartValidator.validateUserIsCartOwner(id);
+
         cartValidator.validateCartExistence(id);
         cartRepository.deleteById(id);
     }
@@ -127,6 +147,10 @@ public class CartServiceImpl implements CartService {
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         String.format("cart with id=%s not found", id)));
+    }
+
+    private void setCartUpdatedTime(Cart cart) {
+        cart.setUpdatedAt(LocalDateTime.now());
     }
 
     private CartItem getCartItemEntity(Cart cart, Product product) {
