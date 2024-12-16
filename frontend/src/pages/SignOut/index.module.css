@@ -1,0 +1,54 @@
+.greetingCaption {
+  margin: 0;
+  height: fit-content;
+  justify-self: flex-start;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.text {
+  font-size: 30px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonContainer button {
+  width: 30%;
+  margin: 20px;
+  background-color: #ff9921;
+  border: 2px solid #ff9921;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  height: 40px;
+}
+
+.buttonContainer button:hover {
+  scale: 105%;
+}
+
+.success__caption {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.success__message {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 20px;
+}

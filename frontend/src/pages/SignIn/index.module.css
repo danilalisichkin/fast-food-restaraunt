@@ -1,0 +1,86 @@
+.greetingCaption {
+  margin: 0;
+  height: fit-content;
+  justify-self: flex-start;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.redirectContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.redirectContainer__text--general {
+  font-size: 20px;
+  margin: 0;
+}
+
+.redirectContainer__redirect {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: underline solid gray 1px;
+  color: gray;
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input {
+  margin-top: 10px;
+}
+
+.signInForm button {
+  width: 40%;
+  margin-top: 20px;
+  background-color: #ff9921;
+  border: 2px solid #ff9921;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  height: 40px;
+}
+
+.signInForm button:hover {
+  scale: 105%;
+}
+
+.error__caption {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.error__message {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 20px;
+}
+
+.success__caption {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.success__message {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 20px;
+}
