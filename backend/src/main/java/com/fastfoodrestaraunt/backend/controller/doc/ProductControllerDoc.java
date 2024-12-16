@@ -29,7 +29,8 @@ public interface ProductControllerDoc {
             @RequestParam(defaultValue = "0") @PositiveOrZero Integer offset,
             @RequestParam(defaultValue = "10") @Positive Integer limit,
             @RequestParam(defaultValue = "id") ProductSortField sortBy,
-            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder);
+            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder,
+            @RequestParam(required = false) Long categoryId);
 
     @Operation(
             summary = "Get product",

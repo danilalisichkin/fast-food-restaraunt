@@ -1,23 +1,23 @@
 \c fast_food_restaurant_database;
 
-INSERT INTO users (phone, first_name, last_name, email, active)
+INSERT INTO users (phone, first_name, last_name, email)
 VALUES
-    ('375441234567', 'Anton', 'Antonov', 'anton@mail.ru', true),
-    ('375293311331', 'Alexey', 'Alexeev', 'lesha@gmail.com', true),
-    ('375447777777', 'Big', 'Smoke', 'grovestreetforever@hotmail.us', true),
-    ('375336677889', 'Danila', 'Danilov', 'krutoyperec@gmail.com', true),
-    ('375152233445', 'Trol', 'Trolev', 'anonim@anonim.ru', false),
-    ('375257654321', 'Admin', 'Adminushka', 'admin@fastfood.com', true);
+    ('375441234567', 'Anton', 'Antonov', 'anton@mail.ru'),
+    ('375293311331', 'Alexey', 'Alexeev', 'lesha@gmail.com'),
+    ('375447777777', 'Big', 'Smoke', 'grovestreetforever@hotmail.us'),
+    ('375336677889', 'Danila', 'Danilov', 'krutoyperec@gmail.com'),
+    ('375152233445', 'Trol', 'Trolev', 'anonim@anonim.ru'),
+    ('375257654321', 'Admin', 'Adminushka', 'admin@fastfood.com');
 
 
-INSERT INTO user_credentials (phone, email, password, role, active)
+INSERT INTO user_credentials (phone, password, role, active)
 VALUES
-    ('375441234567', 'anton@mail.ru', '$2a$10$Hb/cqHNmN60ed02PrCv1yuRQiVTVxiVj5qVdGxgTQVJ/sDdWLr6w6', 'CUSTOMER', true),
-    ('375293311331', 'lesha@gmail.com', '$2a$10$2jfftyn3FNUILpDST1Wp6.R4eq9wKS5LKWzUG12qYdZMP7vObzv8m', 'CUSTOMER', true),
-    ('375447777777', 'grovestreetforever@hotmail.us', '$2a$10$zjyZt0c1HLQQhFtxIuEu7u0uUubGy2xCKw6gUcJzJ3GDmKb7MDjJy', 'CUSTOMER', true),
-    ('375336677889', 'krutoyperec@gmail.com', '$2a$10$co6ooEu1IDoV6Pato7zJKuEZKLIQ8Y0NwJQakqtrAxkcCPvr1pz5O', 'CUSTOMER', true),
-    ('375152233445', 'anonim@anonim.ru', '$2a$10$b54F7mkpXW.YBYi6wbBaveNnU3YRmfnfnTvBR4smQcO2IwBgpKbQO', 'CUSTOMER', false),
-    ('375257654321', 'admin@fastfood.com', '$2a$10$co6ooEu1IDoV6Pato7zJKuEZKLIQ8Y0NwJQakqtrAxkcCPvr1pz5O', 'ADMIN', true);
+    ('375441234567', '$2a$10$Hb/cqHNmN60ed02PrCv1yuRQiVTVxiVj5qVdGxgTQVJ/sDdWLr6w6', 'CUSTOMER', true),
+    ('375293311331', '$2a$10$2jfftyn3FNUILpDST1Wp6.R4eq9wKS5LKWzUG12qYdZMP7vObzv8m', 'CUSTOMER', true),
+    ('375447777777', '$2a$10$zjyZt0c1HLQQhFtxIuEu7u0uUubGy2xCKw6gUcJzJ3GDmKb7MDjJy', 'CUSTOMER', true),
+    ('375336677889', '$2a$10$co6ooEu1IDoV6Pato7zJKuEZKLIQ8Y0NwJQakqtrAxkcCPvr1pz5O', 'CUSTOMER', true),
+    ('375152233445', '$2a$10$b54F7mkpXW.YBYi6wbBaveNnU3YRmfnfnTvBR4smQcO2IwBgpKbQO', 'CUSTOMER', false),
+    ('375257654321', '$2a$10$co6ooEu1IDoV6Pato7zJKuEZKLIQ8Y0NwJQakqtrAxkcCPvr1pz5O', 'ADMIN', true);
 
 INSERT INTO categories (id, name)
 VALUES
@@ -36,35 +36,35 @@ ALTER SEQUENCE categories_id_seq RESTART WITH 11;
 
 INSERT INTO products (id, name, price, weight, image_url, description, category_id)
 VALUES
-    (1, 'Cheeseburger', 5.99, 250, 'http://example.com/images/cheeseburger.jpg', 'A classic cheeseburger with cheese and toppings.', 1),
-    (2, 'Veggie Burger', 6.49, 200, 'http://example.com/images/veggie_burger.jpg', 'A delicious veggie burger for a healthier option.', 1),
+    (1, 'Cheeseburger', 5.99, 250, 'https://lh3.google.com/u/0/d/1O9jCHy1mhfEJ01j8E2yraGBO-Bd3yCNM', 'A classic cheeseburger with cheese and toppings.', 1),
+    (2, 'Veggie Burger', 6.49, 200, 'https://lh3.google.com/u/0/d/1U1cAFcsFgmh4U3coBtLLFt_pcJ5YOiSX', 'A delicious veggie burger for a healthier option.', 1),
 
-    (3, 'Pepperoni Pizza', 8.99, 500, 'http://example.com/images/pepperoni_pizza.jpg', 'A classic pizza topped with pepperoni.', 2),
-    (4, 'Margherita Pizza', 7.99, 480, 'http://example.com/images/margherita_pizza.jpg', 'A simple pizza with fresh mozzarella and basil.', 2),
+    (3, 'Pepperoni Pizza', 8.99, 500, 'https://lh3.google.com/u/0/d/153jeNx923DLyr-cMoNY66OgWVLUmdO2a', 'A classic pizza topped with pepperoni.', 2),
+    (4, 'Margherita Pizza', 7.99, 480, 'https://lh3.google.com/u/0/d/1U45qBUbU-6c7oM61k6rSGzm2l6_Z64No', 'A simple pizza with fresh mozzarella and basil.', 2),
 
-    (5, 'Club Sandwich', 6.99, 300, 'http://example.com/images/club_sandwich.jpg', 'A triple-decker sandwich with turkey, bacon, and lettuce.', 3),
-    (6, 'BLT Sandwich', 5.49, 250, 'http://example.com/images/blt_sandwich.jpg', 'Bacon, lettuce, and tomato on toasted bread.', 3),
+    (5, 'Club Sandwich', 6.99, 300, 'https://lh3.google.com/u/0/d/1_ZTLMU3NWG_0c9FYg0CUBJfRMtJV7RFW', 'A triple-decker sandwich with turkey, bacon, and lettuce.', 3),
+    (6, 'BLT Sandwich', 5.49, 250, 'https://lh3.google.com/u/0/d/1a7QU8oWMVT5rR9lJy2baf0aSgMo-skpk', 'Bacon, lettuce, and tomato on toasted bread.', 3),
 
-    (7, 'Classic Hot Dog', 3.99, 150, 'http://example.com/images/classic_hot_dog.jpg', 'A classic hot dog served with mustard.', 4),
-    (8, 'Chili Cheese Dog', 4.99, 200, 'http://example.com/images/chili_cheese_dog.jpg', 'A hot dog topped with chili and cheese.', 4),
+    (7, 'Classic Hot Dog', 3.99, 150, 'https://lh3.google.com/u/0/d/15mWBxz2y7y2XIJgrOKhIHGGVn0PaxtMu', 'A classic hot dog served with mustard.', 4),
+    (8, 'Chili Cheese Dog', 4.99, 200, 'https://lh3.google.com/u/0/d/1loUgzzg16ejfaJtzNwWhC1Yn1apU3mjL', 'A hot dog topped with chili and cheese.', 4),
 
-    (9, 'Chicken Nuggets', 4.99, 300, 'http://example.com/images/chicken_nuggets.jpg', 'Crispy chicken nuggets served with dipping sauce.', 5),
-    (10, 'Veggie Nuggets', 4.49, 250, 'http://example.com/images/veggie_nuggets.jpg', 'Delicious veggie nuggets that everyone will love.', 5),
+    (9, 'Chicken Nuggets', 4.99, 300, 'https://lh3.google.com/u/0/d/1ccdn9W7vWVg2QW5jglmOwFHyFGX9e2T5', 'Crispy chicken nuggets served with dipping sauce.', 5),
+    (10, 'Veggie Nuggets', 4.49, 250, 'https://lh3.google.com/u/0/d/1728P4yI252tkJeJxY6sOoVSUCOGIzmex', 'Delicious veggie nuggets that everyone will love.', 5),
 
-    (11, 'Beef Taco', 2.99, 150, 'http://example.com/images/beef_taco.jpg', 'A taco filled with seasoned beef and toppings.', 6),
-    (12, 'Chicken Taco', 2.99, 150, 'http://example.com/images/chicken_taco.jpg', 'A taco filled with grilled chicken and salsa.', 6),
+    (11, 'Beef Taco', 2.99, 150, 'https://lh3.google.com/u/0/d/1_VYdM7W3elt5E57Z_-meG3-jPdl5Nu0U', 'A taco filled with seasoned beef and toppings.', 6),
+    (12, 'Chicken Taco', 2.99, 150, 'https://lh3.google.com/u/0/d/1O3kCp6_jlOlMozS-SW6_m0QoMb2DqP0T', 'A taco filled with grilled chicken and salsa.', 6),
 
-    (13, 'French Fries', 2.49, 200, 'http://example.com/images/french_fries.jpg', 'Crispy golden French fries.', 7),
-    (14, 'Cheese Fries', 3.49, 250, 'http://example.com/images/cheese_fries.jpg', 'French fries topped with melted cheese.', 7),
+    (13, 'French Fries', 2.49, 200, 'https://lh3.google.com/u/0/d/1lfCU64qtZVTMR1HKhOwzya9qbDiX5XHg', 'Crispy golden French fries.', 7),
+    (14, 'Cheese Fries', 3.49, 250, 'https://lh3.google.com/u/0/d/11p2P4FLmqGzSWoUZTyLMMZCmNqkppZCg', 'French fries topped with melted cheese.', 7),
 
-    (15, 'Caesar Salad', 5.99, 300, 'http://example.com/images/caesar_salad.jpg', 'A classic Caesar salad with croutons and dressing.', 8),
-    (16, 'Greek Salad', 5.49, 280, 'http://example.com/images/greek_salad.jpg', 'A fresh Greek salad with olives and feta.', 8),
+    (15, 'Caesar Salad', 5.99, 300, 'https://lh3.google.com/u/0/d/1JT8NphOu8fhhK_HIgbjMa_nl7q11t3vB', 'A classic Caesar salad with croutons and dressing.', 8),
+    (16, 'Greek Salad', 5.49, 280, 'https://lh3.google.com/u/0/d/1qeVT3bwYHvvV6gEbp5uNC4GAKpEtfpCR', 'A fresh Greek salad with olives and feta.', 8),
 
-    (17, 'Chocolate Cake', 3.99, 200, 'http://example.com/images/chocolate_cake.jpg', 'Rich chocolate cake with creamy frosting.', 9),
-    (18, 'Ice Cream Sundae', 4.49, 150, 'http://example.com/images/ice_cream_sundae.jpg', 'A delicious sundae topped with nuts and cherries.', 9),
+    (17, 'Chocolate Cake', 3.99, 200, 'https://lh3.google.com/u/0/d/1STlK5FRD2ahA_vJJuRyyiJAkNEsK4GeH', 'Rich chocolate cake with creamy frosting.', 9),
+    (18, 'Ice Cream Sundae', 4.49, 150, 'https://lh3.google.com/u/0/d/1ot66rZ8XNtDlAJGF90ekVGk_SBId19TW', 'A delicious sundae topped with nuts and cherries.', 9),
 
-    (19, 'Cola', 1.99, 350, 'http://example.com/images/cola.jpg', 'A refreshing cola drink.', 10),
-    (20, 'Lemonade', 1.49, 350, 'http://example.com/images/lemonade.jpg', 'Freshly squeezed lemonade.', 10);
+    (19, 'Cola', 1.99, 350, 'https://lh3.google.com/u/0/d/1XFOB-DZet6lDkq261ZJ4lNaVlrF2JZJO', 'A refreshing cola drink.', 10),
+    (20, 'Lemonade', 1.49, 350, 'https://lh3.google.com/u/0/d/111qm8yPseHyAUj3G65tNsi0QX1VG14Yw', 'Freshly squeezed lemonade.', 10);
 
 ALTER SEQUENCE products_id_seq RESTART WITH 21;
 

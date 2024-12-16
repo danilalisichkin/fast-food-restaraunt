@@ -18,6 +18,11 @@ import java.util.List;
 public interface UserMapper {
     UserDto entityToDto(User entity);
 
+    @Mapping(target = "firstName", source = "user.firstName")
+    @Mapping(target = "lastName", source = "user.lastName")
+    @Mapping(target = "email", source = "user.email")
+    UserDto credentialToDto(UserCredential credential);
+
     User dtoToEntity(UserRegisterDto dto);
 
     @Mapping(target = "password", ignore = true)
@@ -27,8 +32,15 @@ public interface UserMapper {
 
     List<UserDto> entityListToDtoList(List<User> enitityList);
 
+    List<UserDto> credentialListToDtoList(List<UserCredential> credentialList);
+
     default Page<UserDto> entityPageToDtoPage(Page<User> entityPage) {
         List<UserDto> dtoList = entityListToDtoList(entityPage.getContent());
         return new PageImpl<>(dtoList, entityPage.getPageable(), entityPage.getTotalElements());
+    }
+
+    default Page<UserDto> credentialPageToDtoPage(Page<UserCredential> credentialPage) {
+        List<UserDto> dtoList = credentialListToDtoList(credentialPage.getContent());
+        return new PageImpl<>(dtoList, credentialPage.getPageable(), credentialPage.getTotalElements());
     }
 }

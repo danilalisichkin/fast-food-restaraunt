@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class JwtUtils {
     public String generateAccessToken(UserCredential user) {
         return Jwts.builder()
                 .setSubject(user.getPhone())
-                .claim("role", "ROLE_" + user.getRole().name())
+                .claim("roles", List.of("ROLE_" + user.getRole().name()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() +
                         Long.parseLong(config.getAccessExpiration()) * 1000 * 60))
@@ -59,13 +60,14 @@ public class JwtUtils {
                 .getSubject();
     }
 
-    public String extractRole(String token) {
+    public List<String> extractRoles(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(config.getSecret().getBytes())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return claims.get("role", String.class);
+
+        return claims.get("roles", List.class);
     }
 }
 

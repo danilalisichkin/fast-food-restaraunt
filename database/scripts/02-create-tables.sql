@@ -5,17 +5,16 @@ CREATE TABLE users
     phone      VARCHAR(15) PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name  VARCHAR(50) NOT NULL,
-    email      VARCHAR(50) NOT NULL UNIQUE,
-    active     BOOLEAN     NOT NULL
+    email      VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE user_credentials
 (
     phone    VARCHAR(15) PRIMARY KEY,
-    email    VARCHAR(50)  NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     role     VARCHAR(10)  NOT NULL,
-    active   BOOLEAN      NOT NULL
+    active   BOOLEAN      NOT NULL,
+    CONSTRAINT fk_user FOREIGN KEY (phone) REFERENCES users(phone)
 );
 
 CREATE TABLE categories
@@ -33,7 +32,7 @@ CREATE TABLE products
     image_url   VARCHAR(255),
     description TEXT,
     category_id BIGINT,
-    FOREIGN KEY (category_id) REFERENCES categories (id)
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
 CREATE TABLE carts

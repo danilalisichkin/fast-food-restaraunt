@@ -28,7 +28,8 @@ public interface UserControllerDoc {
             @RequestParam(defaultValue = "0") @PositiveOrZero Integer offset,
             @RequestParam(defaultValue = "10") @Positive Integer limit,
             @RequestParam(defaultValue = "phone") UserSortField sortBy,
-            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder);
+            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder,
+            @RequestParam(required = false) Boolean active);
 
     @Operation(
             summary = "Get user",

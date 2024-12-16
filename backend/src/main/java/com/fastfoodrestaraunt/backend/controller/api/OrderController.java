@@ -59,7 +59,7 @@ public class OrderController implements OrderControllerDoc {
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/status")
     public ResponseEntity<OrderDto> updateOrderStatus(@PathVariable Long id, @RequestBody @NotNull Status status) {
         OrderDto order = orderService.updateOrderStatus(id, status);
 

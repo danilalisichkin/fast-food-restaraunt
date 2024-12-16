@@ -8,10 +8,26 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+    show-sql: true
     properties:
       hibernate:
         default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.mailersend.net
+    port: 587
+    username: MS_6qMjpC@trial-neqvygm8wed40p7w.mlsender.net
+    password: d22NkZWjj4sdqRao
+    protocol: smtp
+    sender-email: no-reply@trial-neqvygm8wed40p7w.mlsender.net
+    sender-name: FastFoodRestaurant
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    default-encoding: UTF-8
 security:
   jwt:
     secret: ${JWT_SECRET:8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb1111}

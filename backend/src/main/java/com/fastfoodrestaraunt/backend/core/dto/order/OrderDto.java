@@ -9,6 +9,7 @@ import java.util.List;
 @Schema(description = "Server response with order")
 public record OrderDto(
         Long id,
+        String userPhone,
         String deliveryAddress,
         Status status,
         LocalDateTime createdAt,
