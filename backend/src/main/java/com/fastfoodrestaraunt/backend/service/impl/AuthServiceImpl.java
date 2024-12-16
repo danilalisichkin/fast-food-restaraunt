@@ -8,6 +8,7 @@ import com.fastfoodrestaraunt.backend.core.mappers.UserMapper;
 import com.fastfoodrestaraunt.backend.entity.User;
 import com.fastfoodrestaraunt.backend.entity.UserCredential;
 import com.fastfoodrestaraunt.backend.exception.UnauthorizedException;
+import com.fastfoodrestaraunt.backend.repository.UserCredentialRepository;
 import com.fastfoodrestaraunt.backend.repository.UserRepository;
 import com.fastfoodrestaraunt.backend.security.config.JwtConfig;
 import com.fastfoodrestaraunt.backend.security.utils.JwtUtils;
@@ -31,6 +32,8 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
 
+    private final UserCredentialRepository userCredentialRepository;
+
     private final UserMapper userMapper;
 
     private final PasswordEncoder passwordEncoder;
@@ -45,15 +48,19 @@ public class AuthServiceImpl implements AuthService {
         userValidator.validateUserEmailUniqueness(registerDto.email());
 
         User newUser = userMapper.dtoToEntity(registerDto);
+
         UserCredential newUserCredential = userMapper.dtoToCredential(registerDto);
+        newUserCredential.setPhone(registerDto.phone());
         newUserCredential.setRole(Role.CUSTOMER);
         newUserCredential.setActive(true);
         newUserCredential.setPassword(passwordEncoder.encode(registerDto.password()));
+        newUserCredential.setUser(newUser);
+
         newUser.setUserCredential(newUserCredential);
 
-        mailService.sendGreetingMessage(registerDto.email());
-
         userRepository.save(newUser);
+
+        mailService.sendGreetingMessage(registerDto.email());
     }
 
     @Override

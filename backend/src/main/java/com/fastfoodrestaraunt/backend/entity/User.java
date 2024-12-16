@@ -1,5 +1,6 @@
 package com.fastfoodrestaraunt.backend.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,6 +33,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private UserCredential userCredential;
 }

@@ -2,7 +2,7 @@ spring:
   application:
     name: fast-food-restaurant-backend
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:fast_food_restaurant_database}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:fast_food_restaurant_database}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:root}
   jpa:
@@ -14,13 +14,13 @@ spring:
         default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
   mail:
-    host: smtp.mailersend.net
-    port: 587
-    username: MS_6qMjpC@trial-neqvygm8wed40p7w.mlsender.net
-    password: d22NkZWjj4sdqRao
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     protocol: smtp
-    sender-email: no-reply@trial-neqvygm8wed40p7w.mlsender.net
-    sender-name: FastFoodRestaurant
+    sender-email: ${MAIL_SENDER_EMAIL}
+    sender-name: ${MAIL_SENDER_NAME}
     properties:
       mail:
         smtp:
