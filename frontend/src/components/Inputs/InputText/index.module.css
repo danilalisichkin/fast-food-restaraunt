@@ -1,0 +1,35 @@
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer label {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  white-space: nowrap;
+  font-size: 16px;
+  margin: 0;
+  color: gray;
+  width: fit-content;
+  height: 100%;
+}
+
+.inputContainer input {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  height: 20px;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+.inputContainer input:hover,
+.inputContainer input:valid {
+  border-bottom-color: #FF9921;
+}
+
+.inputContainer:hover label {
+  display: none;
+}
