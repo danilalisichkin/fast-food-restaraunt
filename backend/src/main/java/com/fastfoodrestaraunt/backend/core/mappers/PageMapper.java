@@ -11,6 +11,7 @@ public class PageMapper {
                 page.getPageable().getPageNumber(),
                 page.getSize(),
                 page.getTotalPages(),
+                page.getTotalElements(),
                 page.getContent()
         );
     }

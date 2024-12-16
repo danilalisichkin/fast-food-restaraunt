@@ -9,6 +9,7 @@ public record PageDto<T>(
         Integer page,
         Integer pageSize,
         Integer totalPages,
+        Long totalElements,
         List<T> content
 ) {
 }

@@ -34,9 +34,10 @@ public class UserController implements UserControllerDoc {
             @RequestParam(defaultValue = "0") @PositiveOrZero Integer offset,
             @RequestParam(defaultValue = "10") @Positive Integer limit,
             @RequestParam(defaultValue = "phone") UserSortField sortBy,
-            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder) {
+            @RequestParam(defaultValue = "ASC") Sort.Direction sortOrder,
+            @RequestParam(required = false) Boolean active) {
 
-        PageDto<UserDto> page = userService.getPageOfUsers(offset, limit, sortBy, sortOrder);
+        PageDto<UserDto> page = userService.getPageOfUsers(offset, limit, sortBy, sortOrder, active);
 
         return ResponseEntity.status(HttpStatus.OK).body(page);
     }

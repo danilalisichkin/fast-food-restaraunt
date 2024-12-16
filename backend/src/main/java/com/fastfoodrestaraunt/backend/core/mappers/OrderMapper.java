@@ -13,6 +13,7 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {OrderItemMapper.class})
 public interface OrderMapper {
+    @Mapping(target = "userPhone", source = "user.phone")
     OrderDto entityToDto(Order entity);
 
     @Mapping(target = "user", ignore = true)

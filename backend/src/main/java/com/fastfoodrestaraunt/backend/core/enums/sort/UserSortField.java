@@ -9,7 +9,8 @@ public enum UserSortField {
     PHONE("phone"),
     FIRST_NAME("firstName"),
     LAST_NAME("lastName"),
-    EMAIL("email");
+    EMAIL("email"),
+    ACTIVE("active");
 
     private final String value;
 }
