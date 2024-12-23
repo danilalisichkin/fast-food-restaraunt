@@ -11,7 +11,7 @@ function OrderItem({ item }) {
         className={styles.item__imageContainer}
       >
         <img
-          src={product.imageUrl}
+          src={`${process.env.REACT_APP_IMAGE_PATH}/${product.imageUrl}`}
           className={styles.imageContainer__image}
           alt="food"
         />

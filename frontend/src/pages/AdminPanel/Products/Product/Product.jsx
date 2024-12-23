@@ -14,7 +14,7 @@ function Product({ product, handleEdit }) {
         className={styles.product__imageContainer}
         href={"/catalog/product/" + id}
       >
-        <img className={styles.product__image} src={imageUrl} alt="food" />
+        <img className={styles.product__image} src={`${process.env.REACT_APP_IMAGE_PATH}/${imageUrl}`} alt="food" />
       </a>
       <p className={styles.product__id}>{id}</p>
       <p className={styles.product__name}>{name}</p>

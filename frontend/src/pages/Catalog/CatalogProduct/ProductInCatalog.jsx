@@ -11,7 +11,7 @@ function CatalogProduct({ product }) {
         className={styles.product__imageContainer}
       >
         <img
-          src={imageUrl}
+          src={`${process.env.REACT_APP_IMAGE_PATH}/${imageUrl}`}
           className={styles.imageContainer__image}
           alt="food"
         />

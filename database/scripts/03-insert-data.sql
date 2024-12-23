@@ -36,35 +36,35 @@ ALTER SEQUENCE categories_id_seq RESTART WITH 11;
 
 INSERT INTO products (id, name, price, weight, image_url, description, category_id)
 VALUES
-    (1, 'Cheeseburger', 5.99, 250, 'https://lh3.google.com/u/0/d/1O9jCHy1mhfEJ01j8E2yraGBO-Bd3yCNM', 'A classic cheeseburger with cheese and toppings.', 1),
-    (2, 'Veggie Burger', 6.49, 200, 'https://lh3.google.com/u/0/d/1U1cAFcsFgmh4U3coBtLLFt_pcJ5YOiSX', 'A delicious veggie burger for a healthier option.', 1),
+    (1, 'Cheeseburger', 5.99, 250, 'cheeseburger.png', 'A classic cheeseburger with cheese and toppings.', 1),
+    (2, 'Veggie Burger', 6.49, 200, 'veggieburger.png', 'A delicious veggie burger for a healthier option.', 1),
 
-    (3, 'Pepperoni Pizza', 8.99, 500, 'https://lh3.google.com/u/0/d/153jeNx923DLyr-cMoNY66OgWVLUmdO2a', 'A classic pizza topped with pepperoni.', 2),
-    (4, 'Margherita Pizza', 7.99, 480, 'https://lh3.google.com/u/0/d/1U45qBUbU-6c7oM61k6rSGzm2l6_Z64No', 'A simple pizza with fresh mozzarella and basil.', 2),
+    (3, 'Pepperoni Pizza', 8.99, 500, 'pepperonipizza.png', 'A classic pizza topped with pepperoni.', 2),
+    (4, 'Margherita Pizza', 7.99, 480, 'margheritapizza.png', 'A simple pizza with fresh mozzarella and basil.', 2),
 
-    (5, 'Club Sandwich', 6.99, 300, 'https://lh3.google.com/u/0/d/1_ZTLMU3NWG_0c9FYg0CUBJfRMtJV7RFW', 'A triple-decker sandwich with turkey, bacon, and lettuce.', 3),
-    (6, 'BLT Sandwich', 5.49, 250, 'https://lh3.google.com/u/0/d/1a7QU8oWMVT5rR9lJy2baf0aSgMo-skpk', 'Bacon, lettuce, and tomato on toasted bread.', 3),
+    (5, 'Club Sandwich', 6.99, 300, 'clubsandwich.png', 'A triple-decker sandwich with turkey, bacon, and lettuce.', 3),
+    (6, 'BLT Sandwich', 5.49, 250, 'bltsandwich.png', 'Bacon, lettuce, and tomato on toasted bread.', 3),
 
-    (7, 'Classic Hot Dog', 3.99, 150, 'https://lh3.google.com/u/0/d/15mWBxz2y7y2XIJgrOKhIHGGVn0PaxtMu', 'A classic hot dog served with mustard.', 4),
-    (8, 'Chili Cheese Dog', 4.99, 200, 'https://lh3.google.com/u/0/d/1loUgzzg16ejfaJtzNwWhC1Yn1apU3mjL', 'A hot dog topped with chili and cheese.', 4),
+    (7, 'Classic Hot Dog', 3.99, 150, 'classichotdog.png', 'A classic hot dog served with mustard.', 4),
+    (8, 'Chili Cheese Dog', 4.99, 200, 'chillicheesehotdog.png', 'A hot dog topped with chili and cheese.', 4),
 
-    (9, 'Chicken Nuggets', 4.99, 300, 'https://lh3.google.com/u/0/d/1ccdn9W7vWVg2QW5jglmOwFHyFGX9e2T5', 'Crispy chicken nuggets served with dipping sauce.', 5),
-    (10, 'Veggie Nuggets', 4.49, 250, 'https://lh3.google.com/u/0/d/1728P4yI252tkJeJxY6sOoVSUCOGIzmex', 'Delicious veggie nuggets that everyone will love.', 5),
+    (9, 'Chicken Nuggets', 4.99, 300, 'chiсkennuggets.png', 'Crispy chicken nuggets served with dipping sauce.', 5),
+    (10, 'Veggie Nuggets', 4.49, 250, 'veggienuggets.png', 'Delicious veggie nuggets that everyone will love.', 5),
 
-    (11, 'Beef Taco', 2.99, 150, 'https://lh3.google.com/u/0/d/1_VYdM7W3elt5E57Z_-meG3-jPdl5Nu0U', 'A taco filled with seasoned beef and toppings.', 6),
-    (12, 'Chicken Taco', 2.99, 150, 'https://lh3.google.com/u/0/d/1O3kCp6_jlOlMozS-SW6_m0QoMb2DqP0T', 'A taco filled with grilled chicken and salsa.', 6),
+    (11, 'Beef Taco', 2.99, 150, 'beeftaco.png', 'A taco filled with seasoned beef and toppings.', 6),
+    (12, 'Chicken Taco', 2.99, 150, 'chickentaco.png', 'A taco filled with grilled chicken and salsa.', 6),
 
-    (13, 'French Fries', 2.49, 200, 'https://lh3.google.com/u/0/d/1lfCU64qtZVTMR1HKhOwzya9qbDiX5XHg', 'Crispy golden French fries.', 7),
-    (14, 'Cheese Fries', 3.49, 250, 'https://lh3.google.com/u/0/d/11p2P4FLmqGzSWoUZTyLMMZCmNqkppZCg', 'French fries topped with melted cheese.', 7),
+    (13, 'French Fries', 2.49, 200, 'frenchfries.png', 'Crispy golden French fries.', 7),
+    (14, 'Cheese Fries', 3.49, 250, 'cheesefries.png', 'French fries topped with melted cheese.', 7),
 
-    (15, 'Caesar Salad', 5.99, 300, 'https://lh3.google.com/u/0/d/1JT8NphOu8fhhK_HIgbjMa_nl7q11t3vB', 'A classic Caesar salad with croutons and dressing.', 8),
-    (16, 'Greek Salad', 5.49, 280, 'https://lh3.google.com/u/0/d/1qeVT3bwYHvvV6gEbp5uNC4GAKpEtfpCR', 'A fresh Greek salad with olives and feta.', 8),
+    (15, 'Caesar Salad', 5.99, 300, 'caesarsalad.png', 'A classic Caesar salad with croutons and dressing.', 8),
+    (16, 'Greek Salad', 5.49, 280, 'greeksalad.png', 'A fresh Greek salad with olives and feta.', 8),
 
-    (17, 'Chocolate Cake', 3.99, 200, 'https://lh3.google.com/u/0/d/1STlK5FRD2ahA_vJJuRyyiJAkNEsK4GeH', 'Rich chocolate cake with creamy frosting.', 9),
-    (18, 'Ice Cream Sundae', 4.49, 150, 'https://lh3.google.com/u/0/d/1ot66rZ8XNtDlAJGF90ekVGk_SBId19TW', 'A delicious sundae topped with nuts and cherries.', 9),
+    (17, 'Chocolate Cake', 3.99, 200, 'chocolatecake.png', 'Rich chocolate cake with creamy frosting.', 9),
+    (18, 'Ice Cream Sundae', 4.49, 150, 'icecreamsundae.png', 'A delicious sundae topped with nuts and cherries.', 9),
 
-    (19, 'Cola', 1.99, 350, 'https://lh3.google.com/u/0/d/1XFOB-DZet6lDkq261ZJ4lNaVlrF2JZJO', 'A refreshing cola drink.', 10),
-    (20, 'Lemonade', 1.49, 350, 'https://lh3.google.com/u/0/d/111qm8yPseHyAUj3G65tNsi0QX1VG14Yw', 'Freshly squeezed lemonade.', 10);
+    (19, 'Cola', 1.99, 350, 'cola.png', 'A refreshing cola drink.', 10),
+    (20, 'Lemonade', 1.49, 350, 'lemonade.png', 'Freshly squeezed lemonade.', 10);
 
 ALTER SEQUENCE products_id_seq RESTART WITH 21;
 
